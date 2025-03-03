@@ -603,7 +603,7 @@ const token = new (0, _room.SkyWayAuthToken)({
     exp: (0, _room.nowInSec)() + 86400,
     version: 3,
     scope: {
-        appId: "x6PjpSFPAiJZhsgIzrpzULlA6613MgwmyORxDduLgw4=",
+        appId: "db547171-425e-4336-a471-40551a7d765b",
         rooms: [
             {
                 name: "*",
