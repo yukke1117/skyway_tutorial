@@ -24,6 +24,8 @@
     "parcel": "^2.13.3"
   },
   "babel": {
-  "presets": ["@babel/preset-env"]
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
