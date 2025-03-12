@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>SkyWay Tutorial</title>
+    <title>超Real</title>
   </head>
   <body>
     <p>ID: <span id="my-id"></span></p>
@@ -11,10 +11,34 @@
       room name: <input id="room-name" type="text" />
       <button id="join">join</button>
       <button id="leave">leave</button>
+
+      
     </div>
-    <video id="local-video" width="400px" muted playsinline></video>
+    <video id="local-video" width="200px" muted playsinline></video>
     <div id="button-area"></div>
     <div id="remote-media-area"></div>
+
+
+
     <script type="module" src="main.js"></script>
+    <script>
+      function createHeartEffect() {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        document.body.appendChild(heart);
+
+        let x = Math.random() * (window.innerWidth * 0.8) + (window.innerWidth * 0.1);  // Keep hearts in the middle
+        heart.style.left = `${x}px`;
+        heart.style.top = `${window.innerHeight - 50}px`;
+
+        setTimeout(() => {
+          heart.remove();  // Remove heart after animation ends
+        }, 2000);
+      }
+      
+      document.body.style.backgroundColor = "pink";  // Soft pink when synchronized
+      createHeartEffect();
+    </script>
   </body>
 </html>
