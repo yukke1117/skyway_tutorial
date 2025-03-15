@@ -632,7 +632,16 @@ const token = new (0, _room.SkyWayAuthToken)({
     const joinButton = document.getElementById("join");
     const leaveButton = document.getElementById("leave");
     // 自分の映像を取得・表示
-    const { audio, video } = await (0, _room.SkyWayStreamFactory).createMicrophoneAudioAndCameraStream();
+    const { audio, video } = await (0, _room.SkyWayStreamFactory).createMicrophoneAudioAndCameraStream({
+        video: {
+            width: {
+                ideal: 1280
+            },
+            height: {
+                ideal: 720
+            }
+        }
+    });
     video.attach(localVideo);
     await localVideo.play();
     joinButton.onclick = async ()=>{
@@ -671,9 +680,9 @@ const token = new (0, _room.SkyWayAuthToken)({
                 newMedia = document.createElement("video");
                 newMedia.playsInline = true;
                 newMedia.autoplay = true;
-                newMedia.style.width = "300px";
-                newMedia.style.height = "auto";
-                newMedia.style.maxWidth = "300px";
+                newMedia.style.width = "100%";
+                newMedia.style.height = "100%";
+                newMedia.style.objectFit = "cover";
                 break;
             case "audio":
                 newMedia = document.createElement("audio");

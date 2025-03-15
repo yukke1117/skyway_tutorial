@@ -29,7 +29,9 @@ const token = new SkyWayAuthToken({
   const leaveButton = document.getElementById("leave");
 
   // 自分の映像を取得・表示
-  const { audio, video } = await SkyWayStreamFactory.createMicrophoneAudioAndCameraStream();
+  const { audio, video } = await SkyWayStreamFactory.createMicrophoneAudioAndCameraStream({
+    video: { width: { ideal: 1280 }, height: { ideal: 720 } }
+  });
   video.attach(localVideo);
   await localVideo.play();
 
@@ -80,9 +82,9 @@ const token = new SkyWayAuthToken({
         newMedia = document.createElement("video");
         newMedia.playsInline = true;
         newMedia.autoplay = true;
-        newMedia.style.width = "300px";
-        newMedia.style.height = "auto";
-        newMedia.style.maxWidth = "300px";
+        newMedia.style.width = "100%";
+        newMedia.style.height = "100%";
+        newMedia.style.objectFit = "cover";
         break;
       case "audio":
         newMedia = document.createElement("audio");

@@ -8,58 +8,46 @@
   </head>
   
   <body>
-    <p>ID: <span id="my-id"></span></p>
-    <div>
-      room name: <input id="room-name" type="text" />
-      <button id="join">join</button>
-      <button id="leave">leave</button>
-
-      
+    <div id="entrance">
+      <p>ID: <span id="my-id"></span></p>
+      <div>
+        room name: <input id="room-name" type="text" />
+        <button id="join">join</button>
+        <button id="leave">leave</button>
+      </div>
     </div>
-    <video id="local-video" width="200px" muted playsinline></video>
-    <!-- ここのwidthは自分の画面上に表示される自分の映像の大きさ -->
-    <div id="button-area"></div>
+    <video id="local-video" muted playsinline></video>
     <div id="remote-media-area"></div>
 
-    
     <script src="js/jquery-3.7.1.min.js"></script>
     <script type="module" src="main.js"></script>
     <script>
-
-    $(function() {
-      $('heart').on('inview', function(event, isInView) {
-        //一応ここの部分をimgからheartに変更した．
-        //imgだとwebアプリ全体の画像が選択されるっぽい
-        //ここをうまくラベル付けして，ハートだけがじわっと出てくるようにしたいです．
-      if (isInView) {
-            //表示領域に入った時
+      $(function() {
+        $('heart').on('inview', function(event, isInView) {
+          if (isInView) {
             $(this).addClass('img-blur');
-          } else {
-          //表示領域から出た時
-          //$(this).removeClass('img-blur');
-        }
+          }
+        });
       });
-    });
 
+      function createHeartEffect() {
+        let back = document.createElement("div");
+        back.classList.add("back");
 
-    function createHeartEffect() {
         let heart = document.createElement("div");
-        //おそらくここで，divの括りの中で，heartっていうclassを作っている．
         heart.classList.add("heart");
         heart.innerHTML = "❤️";
-        document.body.appendChild(heart);
 
-        let x = Math.random() * (window.innerWidth * 0.8) + (window.innerWidth * 0.1);  // Keep hearts in the middle
-        heart.style.left = `${x}px`;
-        heart.style.top = `${window.innerHeight - 50}px`;
+        back.appendChild(heart); // `.heart` を `.back` に追加
+        document.body.appendChild(back);
 
         setTimeout(() => {
-          heart.remove();  // Remove heart after animation ends
+          back.remove();
         }, 200000);
-     }
+    }
 
-    document.body.style.backgroundColor = "pink";  // Soft pink when synchronized
-    createHeartEffect();
+      document.body.style.backgroundColor = "pink";
+      createHeartEffect();
     </script>
   </body>
 </html>
