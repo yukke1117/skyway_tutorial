@@ -1,3 +1,15 @@
 #remote-media-area {
-
-}
+    display: flex;
+    flex-wrap: wrap; /* 複数のビデオがある場合に対応 */
+    justify-content: center; /* 中央揃え */
+    gap: 10px; /* ビデオ間の余白 */
+  }
+  
+  #remote-media-area video {
+    width: 300px !important;
+    height: auto !important;
+    max-width: 300px !important;
+    object-fit: cover; /* コンテンツを枠内に収める */
+  }
+  
+  

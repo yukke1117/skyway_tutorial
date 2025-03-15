@@ -1,2 +1,14 @@
+#remote-media-area {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  display: flex;
+}
 
+#remote-media-area video {
+  object-fit: cover;
+  width: 300px !important;
+  max-width: 300px !important;
+  height: auto !important;
+}
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

@@ -626,12 +626,12 @@ const token = new (0, _room.SkyWayAuthToken)({
 }).encode("x6PjpSFPAiJZhsgIzrpzULlA6613MgwmyORxDduLgw4=");
 (async ()=>{
     const localVideo = document.getElementById("local-video");
-    const buttonArea = document.getElementById("button-area");
     const remoteMediaArea = document.getElementById("remote-media-area");
     const roomNameInput = document.getElementById("room-name");
     const myId = document.getElementById("my-id");
     const joinButton = document.getElementById("join");
     const leaveButton = document.getElementById("leave");
+    // 自分の映像を取得・表示
     const { audio, video } = await (0, _room.SkyWayStreamFactory).createMicrophoneAudioAndCameraStream();
     video.attach(localVideo);
     await localVideo.play();
@@ -644,49 +644,48 @@ const token = new (0, _room.SkyWayAuthToken)({
         });
         const me = await room.join();
         myId.textContent = me.id;
+        // 自動的に音声と映像をパブリッシュ
         await me.publish(audio);
         await me.publish(video);
-        const subscribeAndAttach = (publication)=>{
-            if (publication.publisher.id === me.id) return;
-            const subscribeButton = document.createElement("button");
-            subscribeButton.id = `subscribe-button-${publication.id}`;
-            subscribeButton.textContent = `${publication.publisher.id}: ${publication.contentType}`;
-            buttonArea.appendChild(subscribeButton);
-            subscribeButton.onclick = async ()=>{
-                const { stream } = await me.subscribe(publication.id);
-                let newMedia;
-                switch(stream.track.kind){
-                    case "video":
-                        newMedia = document.createElement("video");
-                        newMedia.playsInline = true;
-                        newMedia.autoplay = true;
-                        break;
-                    case "audio":
-                        newMedia = document.createElement("audio");
-                        newMedia.controls = true;
-                        newMedia.autoplay = true;
-                        break;
-                    default:
-                        return;
-                }
-                newMedia.id = `media-${publication.id}`;
-                stream.attach(newMedia);
-                remoteMediaArea.appendChild(newMedia);
-            };
-        };
-        room.publications.forEach(subscribeAndAttach);
-        room.onStreamPublished.add((e)=>subscribeAndAttach(e.publication));
+        // 既存のストリームをすべて購読
+        room.publications.forEach((pub)=>subscribeAndAttach(pub, me));
+        // 新しいストリームが公開されたら自動的に購読
+        room.onStreamPublished.add((e)=>subscribeAndAttach(e.publication, me));
         leaveButton.onclick = async ()=>{
             await me.leave();
             await room.dispose();
             myId.textContent = "";
-            buttonArea.replaceChildren();
             remoteMediaArea.replaceChildren();
         };
         room.onStreamUnpublished.add((e)=>{
-            document.getElementById(`subscribe-button-${e.publication.id}`)?.remove();
             document.getElementById(`media-${e.publication.id}`)?.remove();
         });
+    };
+    // 他のユーザーのストリームを購読して表示する関数
+    const subscribeAndAttach = async (publication, me)=>{
+        if (publication.publisher.id === me.id) return; // 自分の映像はスキップ
+        const { stream } = await me.subscribe(publication.id); // 即時購読
+        let newMedia;
+        switch(stream.track.kind){
+            case "video":
+                newMedia = document.createElement("video");
+                newMedia.playsInline = true;
+                newMedia.autoplay = true;
+                newMedia.style.width = "300px";
+                newMedia.style.height = "auto";
+                newMedia.style.maxWidth = "300px";
+                break;
+            case "audio":
+                newMedia = document.createElement("audio");
+                newMedia.controls = false;
+                newMedia.autoplay = true;
+                break;
+            default:
+                return;
+        }
+        newMedia.id = `media-${publication.id}`;
+        stream.attach(newMedia);
+        remoteMediaArea.appendChild(newMedia);
     };
 })();
 
