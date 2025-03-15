@@ -17,11 +17,11 @@
         <button id="leave">leave</button>
       </div>
     </div>
-    <img id="zoom" src="../img/zoom.jpeg">
+    <img id="zoom" src="./img/heart.png">
     <video id="local-video" muted playsinline></video>
     <div id="remote-media-area"></div>
     <div id = "zoomback">
-      <img id="zoomimg" src="../img/zoom.jpeg" alt="Zoom Image">
+      <img id="zoomimg" src="./img/zoom.jpeg" alt="Zoom Image">
     </div>
 
     <script src="js/jquery-3.7.1.min.js"></script>
@@ -37,23 +37,9 @@
         });
       });
 
-      function createHeartEffect() {
-        let back = document.createElement("div");
-        back.classList.add("back");
+      
 
-        let heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "❤️";
-
-        back.appendChild(heart); // `.heart` を `.back` に追加
-        document.body.appendChild(back);
-
-        setTimeout(() => {
-          back.remove();
-        }, 200000);
-    }
-
-      createHeartEffect();
+      
     </script>
   </body>
 </html>

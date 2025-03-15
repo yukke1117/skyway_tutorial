@@ -17,11 +17,11 @@
         <button id="leave">leave</button>
       </div>
     </div>
-    <img id="zoom" src="/zoom.1d55e6d1.jpeg">
+    <img id="zoom" src="/heart.869a033f.png">
     <video id="local-video" muted="" playsinline=""></video>
     <div id="remote-media-area"></div>
     <div id="zoomback">
-      <img id="zoomimg" src="/zoom.1d55e6d1.jpeg" alt="Zoom Image">
+      <img id="zoomimg" src="/zoom.5dbac8cc.jpeg" alt="Zoom Image">
     </div>
 
     <script src="/index.9733ea94.js"></script>
@@ -33,19 +33,6 @@
         if (isInView) $(this).addClass('img-blur');
     });
 });
-function createHeartEffect() {
-    let back = document.createElement("div");
-    back.classList.add("back");
-    let heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "\u2764\uFE0F";
-    back.appendChild(heart); // `.heart` を `.back` に追加
-    document.body.appendChild(back);
-    setTimeout(()=>{
-        back.remove();
-    }, 200000);
-}
-createHeartEffect();
 
 </script>
   </body>

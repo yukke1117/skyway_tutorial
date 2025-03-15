@@ -1,29 +1,46 @@
-const zoom = document.querySelectorAll("#zoom");
-const zoomback = document.getElementById("zoomback");
-const zoomimg = document.getElementById("zoomimg");
+document.addEventListener("DOMContentLoaded", function () {
+    const zoomback = document.getElementById("zoomback");
+    const zoomimg = document.getElementById("zoomimg");
 
-// 一括でイベントリスナ　..②
-zoom.forEach(function(value) {
-      value.addEventListener("click",kakudai);
-      });
+    function createHeartEffect(imagePath) {
+        let back = document.createElement("div");
+        back.classList.add("back");
 
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
 
-function kakudai(e) {
-
-    zoomback.style.display = "flex";
-    zoomimg.setAttribute("src",e.target.src);
-    // 「deka」クラスを付与　..⑦
-    zoomimg.classList.add("deka");
-}
+        let img = document.createElement("img");
+        img.src = new URL("/heart.869a033f.png", document.baseURI).href;
+        img.alt = 'ハートの画像';
+        console.log("画像のパス:", img.src);
 
 
-// 元に戻すイベントリスナを指定　..⑤
-zoomback.addEventListener("click",modosu);
 
-// 拡大領域を無きものに　..⑥
-function modosu() {
+        heart.appendChild(img);
+        back.appendChild(heart);
+        document.body.appendChild(back);
 
-    zoomback.style.display = "none";
-    // 「deka」クラスを削除　..⑧
-    zoomimg.classList.remove("deka")
+        console.log("追加された要素:", back);
+
+        // ハートクリック時の拡大表示
+        heart.addEventListener("click", function () {
+            zoomback.style.display = "flex";
+            zoomimg.setAttribute("src", imagePath);
+            zoomimg.classList.add("deka");
+        });
+
+        setTimeout(() => {
+            console.log("要素を削除します");
+            back.remove();
+        }, 5000); // 5秒後に削除
     }
+
+    // 初回実行
+    createHeartEffect("./img/zoom.jpeg");
+
+    // 拡大領域を閉じるイベント
+    zoomback.addEventListener("click", function () {
+        zoomback.style.display = "none";
+        zoomimg.classList.remove("deka");
+    });
+});
