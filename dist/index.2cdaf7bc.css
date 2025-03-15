@@ -35,7 +35,7 @@ body {
 }
 
 #entrance {
-  z-index: 100;
+  z-index: 10;
   background-color: #fffc;
   border-radius: 5px;
   width: auto;
@@ -48,7 +48,7 @@ body {
 }
 
 .back {
-  z-index: 50;
+  z-index: 10;
   background-color: #fffc;
   border-radius: 5px;
   justify-content: center;
@@ -83,5 +83,41 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, 50%);
+}
+
+#zoomback {
+  z-index: 1000;
+  background-color: #000c;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: absolute;
+  top: 0;
+}
+
+#zooming {
+  z-index: 10;
+  width: 50%;
+}
+
+#zoom {
+  object-fit: cover;
+  z-index: 10;
+  width: 1000px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.deka {
+  animation: .3s ease-out deka;
+}
+
+@keyframes deka {
+  from {
+    transform: scale(0);
+  }
 }
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

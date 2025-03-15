@@ -1,4 +1,4 @@
-body {
+  body {
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -40,7 +40,7 @@ body {
     right: 10px;
     width: auto;
     height: auto;
-    z-index: 100;
+    z-index: 10;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
     border-radius: 5px;
@@ -55,7 +55,7 @@ body {
     width: 100px;
     height: 100px; /* 高さを明示 */
     position: absolute;
-    z-index: 50;
+    z-index: 10;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
@@ -83,3 +83,48 @@ body {
     opacity: 0;
     animation: fadeUp 1.5s ease-out forwards; /* 1.5秒かけてフェードアップ */
 }
+
+#zoomback {
+  position: absolute;
+  top: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.8);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display: none;
+
+}
+
+#zooming {
+  width: 50%;
+  z-index: 10;
+}
+#zoom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1000px;
+  object-fit: cover;
+  z-index: 10;
+}
+
+
+.deka {
+
+  animation:deka 0.3s ease-out;
+  }
+  
+  @keyframes deka {
+  
+  from {
+  
+  transform:scale(0);
+  }
+  
+  }
