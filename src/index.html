@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>超Real</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
   </head>
+  
   <body>
     <p>ID: <span id="my-id"></span></p>
     <div>
@@ -15,15 +17,34 @@
       
     </div>
     <video id="local-video" width="200px" muted playsinline></video>
+    <!-- ここのwidthは自分の画面上に表示される自分の映像の大きさ -->
     <div id="button-area"></div>
     <div id="remote-media-area"></div>
 
-
-
+    
+    <script src="js/jquery-3.7.1.min.js"></script>
     <script type="module" src="main.js"></script>
     <script>
-      function createHeartEffect() {
+
+    $(function() {
+      $('heart').on('inview', function(event, isInView) {
+        //一応ここの部分をimgからheartに変更した．
+        //imgだとwebアプリ全体の画像が選択されるっぽい
+        //ここをうまくラベル付けして，ハートだけがじわっと出てくるようにしたいです．
+      if (isInView) {
+            //表示領域に入った時
+            $(this).addClass('img-blur');
+          } else {
+          //表示領域から出た時
+          //$(this).removeClass('img-blur');
+        }
+      });
+    });
+
+
+    function createHeartEffect() {
         let heart = document.createElement("div");
+        //おそらくここで，divの括りの中で，heartっていうclassを作っている．
         heart.classList.add("heart");
         heart.innerHTML = "❤️";
         document.body.appendChild(heart);
@@ -34,11 +55,11 @@
 
         setTimeout(() => {
           heart.remove();  // Remove heart after animation ends
-        }, 2000);
-      }
-      
-      document.body.style.backgroundColor = "pink";  // Soft pink when synchronized
-      createHeartEffect();
+        }, 200000);
+     }
+
+    document.body.style.backgroundColor = "pink";  // Soft pink when synchronized
+    createHeartEffect();
     </script>
   </body>
 </html>
