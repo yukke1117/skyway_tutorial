@@ -597,7 +597,6 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"llXJZ":[function(require,module,exports,__globalThis) {
 document.addEventListener("DOMContentLoaded", function() {
-    const zoomback = document.getElementById("zoomback");
     const graphzoom = document.getElementById("correlationChart");
     function createHeartEffect() {
         let back = document.createElement("div");

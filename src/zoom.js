@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const zoomback = document.getElementById("zoomback");
     const graphzoom = document.getElementById("correlationChart");
 
     function createHeartEffect() {
