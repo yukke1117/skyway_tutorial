@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <title>超Real</title>
     <link rel="stylesheet" href="/index.2cdaf7bc.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  <!-- Include Chart.js -->
   </head>
   
   <body>
@@ -16,30 +17,22 @@
         <button id="leave">leave</button>
       </div>
     </div>
+    <img id="zoom" src="/heart.869a033f.png">
     <video id="local-video" muted="" playsinline=""></video>
     <div id="remote-media-area"></div>
+    <div id="zoomback">
+      <img id="zoomimg" src="/zoom.5dbac8cc.jpeg" alt="Zoom Image">
+    </div>
 
     <script src="/index.9733ea94.js"></script>
-    <script src="/index.4d6bcbeb.js" defer=""></script>
+    <script src="/index.7a386bb5.js" async="" defer=""></script>
+    <script src="/index.a62527fa.js" async="" defer=""></script>
+    <script src="/index.ff058895.js"></script>
     <script>$(function() {
     $('heart').on('inview', function(event, isInView) {
         if (isInView) $(this).addClass('img-blur');
     });
 });
-function createHeartEffect() {
-    let back = document.createElement("div");
-    back.classList.add("back");
-    let heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "\u2764\uFE0F";
-    back.appendChild(heart); // `.heart` を `.back` に追加
-    document.body.appendChild(back);
-    setTimeout(()=>{
-        back.remove();
-    }, 200000);
-}
-document.body.style.backgroundColor = "pink";
-createHeartEffect();
 
 </script>
   </body>

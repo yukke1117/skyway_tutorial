@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>超Real</title>
     <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  <!-- Include Chart.js -->
   </head>
   
   <body>
@@ -16,11 +17,17 @@
         <button id="leave">leave</button>
       </div>
     </div>
+    <img id="zoom" src="./img/heart.png">
     <video id="local-video" muted playsinline></video>
     <div id="remote-media-area"></div>
+    <div id = "zoomback">
+      <img id="zoomimg" src="./img/zoom.jpeg" alt="Zoom Image">
+    </div>
 
     <script src="js/jquery-3.7.1.min.js"></script>
-    <script type="module" src="main.js"></script>
+    <script type="module" src="main.js" async></script>
+    <script type="module" src="heart.js" async></script>
+    <script src="zoom.js"></script>
     <script>
       $(function() {
         $('heart').on('inview', function(event, isInView) {
@@ -30,24 +37,9 @@
         });
       });
 
-      function createHeartEffect() {
-        let back = document.createElement("div");
-        back.classList.add("back");
+      
 
-        let heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "❤️";
-
-        back.appendChild(heart); // `.heart` を `.back` に追加
-        document.body.appendChild(back);
-
-        setTimeout(() => {
-          back.remove();
-        }, 200000);
-    }
-
-      document.body.style.backgroundColor = "pink";
-      createHeartEffect();
+      
     </script>
   </body>
 </html>
