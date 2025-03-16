@@ -638,7 +638,7 @@ let correlationChart = new Chart(ctx, {
             legend: {
                 display: true
             }
-        } //グラフの設定
+        }
     }
 });
 ws.onmessage = function(event) {
@@ -665,26 +665,14 @@ ws.onmessage = function(event) {
         document.body.style.backgroundColor = "pink"; // Soft pink when synchronized
         createHeartEffect();
     } else document.body.style.backgroundColor = "white";
+//この辺を修正する必要がある．
 };
 ws.onerror = function(error) {
     console.error("WebSocket Error:", error);
-}; //エラーを吐く場所
+};
 ws.onclose = function() {
     console.log("WebSocket Disconnected");
-}; //切断された時の処理
-// Function to create floating heart effects
-function createHeartEffect() {
-    let heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "\u2764\uFE0F";
-    document.body.appendChild(heart);
-    let x = Math.random() * (window.innerWidth * 0.8) + window.innerWidth * 0.1; // Keep hearts in the middle
-    heart.style.left = `${x}px`;
-    heart.style.top = `${window.innerHeight - 50}px`;
-    setTimeout(()=>{
-        heart.remove(); // Remove heart after animation ends
-    }, 2000);
-}
+};
 
 },{}]},["1gTLs","4iM4P"], "4iM4P", "parcelRequire94c2")
 

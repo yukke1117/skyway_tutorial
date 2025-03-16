@@ -85,16 +85,6 @@ body {
   transform: translate(-50%, 50%);
 }
 
-#zoom {
-  object-fit: cover;
-  z-index: 10;
-  width: 1000px;
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 #zoomback {
   z-index: 1000;
   background-color: #000c;
@@ -107,10 +97,12 @@ body {
   top: 0;
 }
 
-#zoomimg {
-  width: 50%;
-  max-width: 80%;
-  height: auto;
+#correlationChart {
+  background-color: #fffc;
+  width: 20%;
+  max-width: 30%;
+  height: 20%;
+  max-height: 30%;
 }
 
 .deka {

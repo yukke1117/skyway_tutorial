@@ -27,7 +27,7 @@ let ws = new WebSocket("ws://127.0.0.1:8000/ws");  // Connect to WebSocket Serve
                 },
                 plugins: {
                     legend: { display: true }
-                }//グラフの設定
+                }
             }
         });
 
@@ -62,28 +62,13 @@ let ws = new WebSocket("ws://127.0.0.1:8000/ws");  // Connect to WebSocket Serve
             } else {
                 document.body.style.backgroundColor = "white";
             }
+            //この辺を修正する必要がある．
         };
 
         ws.onerror = function (error) {
             console.error("WebSocket Error:", error);
-        }; //エラーを吐く場所
+        };
 
         ws.onclose = function () {
             console.log("WebSocket Disconnected");
-        }; //切断された時の処理
-
-        // Function to create floating heart effects
-        function createHeartEffect() {
-            let heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            document.body.appendChild(heart);
-
-            let x = Math.random() * (window.innerWidth * 0.8) + (window.innerWidth * 0.1);  // Keep hearts in the middle
-            heart.style.left = `${x}px`;
-            heart.style.top = `${window.innerHeight - 50}px`;
-
-            setTimeout(() => {
-                heart.remove();  // Remove heart after animation ends
-            }, 2000);
-}
+        };

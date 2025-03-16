@@ -21,13 +21,12 @@
     <video id="local-video" muted playsinline></video>
     <div id="remote-media-area"></div>
     <div id = "zoomback">
-      <img id="zoomimg" src="./img/zoom.jpeg" alt="Zoom Image">
+      <canvas id="correlationChart"></canvas>
     </div>
-
     <script src="js/jquery-3.7.1.min.js"></script>
     <script type="module" src="main.js" async></script>
     <script type="module" src="heart.js" async></script>
-    <script src="zoom.js"></script>
+    <script type="module" src="zoom.js"></script>
     <script>
       $(function() {
         $('heart').on('inview', function(event, isInView) {
@@ -35,11 +34,7 @@
             $(this).addClass('img-blur');
           }
         });
-      });
-
-      
-
-      
+      });      
     </script>
   </body>
 </html>
