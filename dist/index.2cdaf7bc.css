@@ -63,6 +63,18 @@ body {
   box-shadow: 0 0 10px #00000080;
 }
 
+#correlationChart {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 20%;
+  max-width: 30%;
+  height: 20%;
+  max-height: 30%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -85,19 +97,9 @@ body {
   transform: translate(-50%, 50%);
 }
 
-#zoom {
-  object-fit: cover;
-  z-index: 10;
-  width: 1000px;
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 #zoomback {
   z-index: 1000;
-  background-color: #000c;
+  background-color: #0000;
   justify-content: center;
   align-items: center;
   width: 100vw;
@@ -105,12 +107,6 @@ body {
   display: none;
   position: absolute;
   top: 0;
-}
-
-#zoomimg {
-  width: 50%;
-  max-width: 80%;
-  height: auto;
 }
 
 .deka {

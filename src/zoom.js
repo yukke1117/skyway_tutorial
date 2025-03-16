@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const zoomback = document.getElementById("zoomback");
-    const zoomimg = document.getElementById("zoomimg");
+    const graphzoom = document.getElementById("correlationChart");
 
-    function createHeartEffect(imagePath) {
+    function createHeartEffect() {
         let back = document.createElement("div");
         back.classList.add("back");
 
@@ -12,35 +11,33 @@ document.addEventListener("DOMContentLoaded", function () {
         let img = document.createElement("img");
         img.src = new URL("/heart.869a033f.png", document.baseURI).href;
         img.alt = 'ハートの画像';
-        console.log("画像のパス:", img.src);
-
-
 
         heart.appendChild(img);
         back.appendChild(heart);
         document.body.appendChild(back);
 
-        console.log("追加された要素:", back);
-
-        // ハートクリック時の拡大表示
+        // ハートクリック時のグラフ表示
         heart.addEventListener("click", function () {
             zoomback.style.display = "flex";
-            zoomimg.setAttribute("src", imagePath);
-            zoomimg.classList.add("deka");
+            graphzoom.style.display = "block";  // canvas を表示
+            graphzoom.classList.add("deka");
         });
 
         setTimeout(() => {
             console.log("要素を削除します");
-            back.remove();
+            heart.remove();
         }, 5000); // 5秒後に削除
     }
 
     // 初回実行
-    createHeartEffect("./img/zoom.jpeg");
+    createHeartEffect();
+
+    zoomback.addEventListener("click", modosu);
 
     // 拡大領域を閉じるイベント
-    zoomback.addEventListener("click", function () {
+    function modosu() {
         zoomback.style.display = "none";
-        zoomimg.classList.remove("deka");
-    });
+        graphzoom.style.display = "none";  // canvas を非表示
+        graphzoom.classList.remove("deka");
+    }
 });

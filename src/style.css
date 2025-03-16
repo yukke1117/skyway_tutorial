@@ -48,10 +48,11 @@
   }
   
   .back {
+    /* ハートの背景に対応 */
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8);
     top: 10px;
-    left: 10px; /* 右上に配置 */
+    left: 10px; /* 左上に配置 */
     width: 100px;
     height: 100px; /* 高さを明示 */
     position: absolute;
@@ -62,6 +63,18 @@
     align-items: center; /* 中央揃え */
     border-radius: 5px;
 }
+
+  #correlationChart {
+    top: 10px;
+    left: 10px;
+    width: 20%;
+    max-width: 30%;
+    height: 20%;
+    max-height: 30%;
+    background-color: rgba(255, 255, 255, 1);
+    position: absolute;
+    border-radius: 5px;
+  }
 
 @keyframes fadeUp {
     from {
@@ -83,24 +96,20 @@
     animation: fadeUp 1.5s ease-out forwards; /* 1.5秒かけてフェードアップ */
     object-fit: cover;
 }
-#zoom {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1000px;
-  object-fit: cover;
-  z-index: 10;
-  display: none;
-}
+
+
 
 #zoomback {
+  /* これを消す． */
   position: absolute;
   top: 0;
 
   width: 100vw;
   height: 100vh;
 
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0);
+  /* めんどくさいから透明にして見えないようにした */
+  /* 本来であれば，バツボタンなどをつけたほうがいいかな */
 
   display: flex;
   justify-content: center;
@@ -109,13 +118,6 @@
   display: none;
 
 }
-
-#zoomimg {
-  width: 50%;
-  max-width: 80%;
-  height: auto;
-}
-
 
 
 
