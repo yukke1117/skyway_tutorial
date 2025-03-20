@@ -2,6 +2,18 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 import random
 import time
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/run-python', methods=['POST'])
+def run_python():
+    data = request.json
+    result = {"message": "Python script executed!", "input": data}
+    return jsonify(result)
+
+if __name__ == "__main__":
+    app.run()
 
 # Firebaseの初期化（既に初期化済みならスキップ）
 cred = credentials.Certificate("serviceAccountKey.json")
