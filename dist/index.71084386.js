@@ -611,13 +611,22 @@ const firebaseConfig = {
 // Firebaseの初期化
 const app = (0, _app.initializeApp)(firebaseConfig);
 const db = (0, _firestore.getFirestore)(app);
-// 最新のデータを取得（リアルタイム更新）
-const q = (0, _firestore.query)((0, _firestore.collection)(db, "new_heart_rate"), (0, _firestore.orderBy)("timestamp", "desc"), (0, _firestore.limit)(1));
-(0, _firestore.onSnapshot)(q, (snapshot)=>{
+// new_heart_rate の最新データを取得
+const q1 = (0, _firestore.query)((0, _firestore.collection)(db, "new_heart_rate"), (0, _firestore.orderBy)("timestamp", "desc"), (0, _firestore.limit)(1));
+(0, _firestore.onSnapshot)(q1, (snapshot)=>{
     snapshot.forEach((doc)=>{
         const data = doc.data();
-        console.log("\u53D6\u5F97\u3057\u305F\u30C7\u30FC\u30BF:", data); // デバッグ用
-        document.getElementById("heart-rate").innerText = `${data.heart_rate} BPM`;
+        console.log("new_heart_rate \u306E\u30C7\u30FC\u30BF:", data); // デバッグ用
+        document.getElementById("heart-rate1").innerText = `${data.heart_rate} bpm`;
+    });
+});
+// new_heart_rate2 の最新データを取得
+const q2 = (0, _firestore.query)((0, _firestore.collection)(db, "new_heart_rate_add"), (0, _firestore.orderBy)("timestamp", "desc"), (0, _firestore.limit)(1));
+(0, _firestore.onSnapshot)(q2, (snapshot)=>{
+    snapshot.forEach((doc)=>{
+        const data = doc.data();
+        console.log("new_heart_rate2 \u306E\u30C7\u30FC\u30BF:", data); // デバッグ用
+        document.getElementById("heart-rate2").innerText = `${data.heart_rate} bpm`;
     });
 });
 

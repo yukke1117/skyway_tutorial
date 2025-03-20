@@ -16,12 +16,22 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 最新のデータを取得（リアルタイム更新）
-const q = query(collection(db, "new_heart_rate"), orderBy("timestamp", "desc"), limit(1));
-onSnapshot(q, (snapshot) => {
+// new_heart_rate の最新データを取得
+const q1 = query(collection(db, "new_heart_rate"), orderBy("timestamp", "desc"), limit(1));
+onSnapshot(q1, (snapshot) => {
   snapshot.forEach((doc) => {
     const data = doc.data();
-    console.log("取得したデータ:", data); // デバッグ用
-    document.getElementById("heart-rate").innerText = `${data.heart_rate} BPM`;
+    console.log("new_heart_rate のデータ:", data); // デバッグ用
+    document.getElementById("heart-rate1").innerText = `${data.heart_rate} bpm`;
+  });
+});
+
+// new_heart_rate2 の最新データを取得
+const q2 = query(collection(db, "new_heart_rate_add"), orderBy("timestamp", "desc"), limit(1));
+onSnapshot(q2, (snapshot) => {
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+    console.log("new_heart_rate2 のデータ:", data); // デバッグ用
+    document.getElementById("heart-rate2").innerText = `${data.heart_rate} bpm`;
   });
 });

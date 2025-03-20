@@ -63,6 +63,22 @@
     align-items: center; /* 中央揃え */
     border-radius: 5px;
 }
+#back {
+  /* ハートの背景に対応 */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  top: 10px;
+  left: 10px; /* 左上に配置 */
+  width: 100px;
+  height: 100px; /* 高さを明示 */
+  position: absolute;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 中央揃え */
+  border-radius: 5px;
+}
 
   #correlationChart {
     top: 10px;
@@ -76,26 +92,16 @@
     border-radius: 5px;
   }
 
-@keyframes fadeUp {
-    from {
-        transform: translate(-50%, 50%);
-        opacity: 0;
-    }
-    to {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-    }
-}
-
-.heart {
+  .heart {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 50%);
-    opacity: 0;
-    animation: fadeUp 1.5s ease-out forwards; /* 1.5秒かけてフェードアップ */
+    transform: translate(-50%, -50%);
+    opacity: 1;
     object-fit: cover;
+    transition: transform 0.2s ease-out; /* 0.2秒の滑らかな動き */
 }
+
 
 
 
@@ -138,3 +144,5 @@
   #heart-container {
     z-index: 1000;
   }
+
+ 

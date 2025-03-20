@@ -618,10 +618,10 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(()=>{
             console.log("\u8981\u7D20\u3092\u524A\u9664\u3057\u307E\u3059");
             heart.remove();
-        }, 50000); // 5秒後に削除
+        }, 5000); // 5秒後に削除
     }
-    // 初回実行
-    createHeartEffect();
+    // 🔥 グローバルスコープに登録（追加）
+    window.createHeartEffect = createHeartEffect;
     zoomback.addEventListener("click", modosu);
     // 拡大領域を閉じるイベント
     function modosu() {

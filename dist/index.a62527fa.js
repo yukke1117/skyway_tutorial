@@ -596,21 +596,51 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"4iM4P":[function(require,module,exports,__globalThis) {
-let ws = new WebSocket("ws://127.0.0.1:8000/ws"); // Connect to WebSocket Server
+function getHeartRate() {
+    let heartRateText = document.getElementById("heart-rate1").innerText; // 例: "95 bpm"
+    let heartRate = parseInt(heartRateText.replace(" bpm", ""), 10); // "95 bpm" → 95 に変換
+    return isNaN(heartRate) ? null : heartRate;
+}
+function calculateCorrelation(xArray, yArray) {
+    if (xArray.length !== yArray.length || xArray.length === 0) return null;
+    let n = xArray.length;
+    let sumX = xArray.reduce((a, b)=>a + b, 0);
+    let sumY = yArray.reduce((a, b)=>a + b, 0);
+    let sumXY = xArray.map((x, i)=>x * yArray[i]).reduce((a, b)=>a + b, 0);
+    let sumX2 = xArray.map((x)=>x * x).reduce((a, b)=>a + b, 0);
+    let sumY2 = yArray.map((y)=>y * y).reduce((a, b)=>a + b, 0);
+    let numerator = n * sumXY - sumX * sumY;
+    let denominator = Math.sqrt((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY));
+    return denominator === 0 ? 0 : numerator / denominator;
+}
+// データ格納用
+let heartRateData = [];
+let maxCorrelationData = [];
+let timeLabels = [];
+// グラフのセットアップ
 let ctx = document.getElementById('correlationChart').getContext('2d');
 let correlationChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: [],
+        labels: timeLabels,
         datasets: [
             {
-                label: 'Synchronization Percentage',
-                data: [],
+                label: 'Heart Rate (BPM)',
+                data: heartRateData,
+                borderColor: 'blue',
+                borderWidth: 2,
+                fill: false,
+                pointRadius: 3,
+                pointBackgroundColor: "black"
+            },
+            {
+                label: 'Max Correlation',
+                data: maxCorrelationData,
                 borderColor: 'red',
                 borderWidth: 2,
                 fill: false,
                 pointRadius: 3,
-                pointBackgroundColor: "black" // Make points easier to see
+                pointBackgroundColor: "black"
             }
         ]
     },
@@ -627,10 +657,10 @@ let correlationChart = new Chart(ctx, {
             y: {
                 title: {
                     display: true,
-                    text: "Synchronization Percentage",
+                    text: "Value",
                     color: "black"
                 },
-                min: 0,
+                min: -1,
                 max: 1
             }
         },
@@ -641,38 +671,31 @@ let correlationChart = new Chart(ctx, {
         }
     }
 });
-ws.onmessage = function(event) {
-    let data;
-    try {
-        data = JSON.parse(event.data);
-    } catch (error) {
-        console.error("Failed to parse JSON:", error);
-        return;
+// 1秒ごとにデータを更新
+setInterval(()=>{
+    let heartRate = getHeartRate();
+    let maxCorrelation = Math.random() * 2 - 1; // 仮のデータ（-1 〜 1 の乱数）
+    if (heartRate !== null) {
+        let currentTime = new Date().toLocaleTimeString(); // 現在の時刻
+        // データ追加
+        heartRateData.push(heartRate);
+        maxCorrelationData.push(maxCorrelation);
+        timeLabels.push(currentTime);
+        // データ数が多くなりすぎたら古いデータを削除
+        if (timeLabels.length > 50) {
+            heartRateData.shift();
+            maxCorrelationData.shift();
+            timeLabels.shift();
+        }
+        // 相関を計算（十分なデータが溜まったら）
+        if (heartRateData.length > 10) {
+            let correlationValue = calculateCorrelation(heartRateData, maxCorrelationData);
+            console.log(`Calculated Correlation: ${correlationValue}`);
+        }
+        // グラフ更新
+        correlationChart.update();
     }
-    if (!("max_correlation" in data)) {
-        console.error("Error: Missing 'max_correlation' in received data.", data);
-        return;
-    }
-    let maxCorrelation = data.max_correlation;
-    let time = data.time;
-    console.log(`Synchronization: ${(maxCorrelation * 100).toFixed(2)}%`);
-    // Update the graph
-    correlationChart.data.labels.push(time);
-    correlationChart.data.datasets[0].data.push(maxCorrelation);
-    correlationChart.update();
-    // Trigger heart effect when synchronization is high
-    if (maxCorrelation > 0.5) {
-        document.body.style.backgroundColor = "pink"; // Soft pink when synchronized
-        createHeartEffect();
-    } else document.body.style.backgroundColor = "white";
-//この辺を修正する必要がある．
-};
-ws.onerror = function(error) {
-    console.error("WebSocket Error:", error);
-};
-ws.onclose = function() {
-    console.log("WebSocket Disconnected");
-};
+}, 1000);
 
 },{}]},["1gTLs","4iM4P"], "4iM4P", "parcelRequire94c2")
 

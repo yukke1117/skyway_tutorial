@@ -26,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
             console.log("要素を削除します");
             heart.remove();
-        }, 50000); // 5秒後に削除
+        }, 5000); // 5秒後に削除
     }
 
-    // 初回実行
-    createHeartEffect();
+    // 🔥 グローバルスコープに登録（追加）
+    window.createHeartEffect = createHeartEffect;
 
     zoomback.addEventListener("click", modosu);
 
