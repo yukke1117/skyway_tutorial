@@ -618,7 +618,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(()=>{
             console.log("\u8981\u7D20\u3092\u524A\u9664\u3057\u307E\u3059");
             heart.remove();
-        }, 5000); // 5秒後に削除
+        }, 50000); // 5秒後に削除
     }
     // 初回実行
     createHeartEffect();

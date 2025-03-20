@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
             console.log("要素を削除します");
             heart.remove();
-        }, 5000); // 5秒後に削除
+        }, 50000); // 5秒後に削除
     }
 
     // 初回実行

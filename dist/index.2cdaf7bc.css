@@ -118,4 +118,8 @@ body {
     transform: scale(0);
   }
 }
+
+#heart-container {
+  z-index: 1000;
+}
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

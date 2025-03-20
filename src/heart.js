@@ -64,11 +64,3 @@ let ws = new WebSocket("ws://127.0.0.1:8000/ws");  // Connect to WebSocket Serve
             }
             //この辺を修正する必要がある．
         };
-
-        ws.onerror = function (error) {
-            console.error("WebSocket Error:", error);
-        };
-
-        ws.onclose = function () {
-            console.log("WebSocket Disconnected");
-        };

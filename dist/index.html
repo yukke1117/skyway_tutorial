@@ -16,6 +16,10 @@
         <button id="join">join</button>
         <button id="leave">leave</button>
       </div>
+      <div id="heart-container">
+        <h2>現在の心拍数</h2>
+        <div id="heart-rate">取得中...</div>
+      </div>
     </div>
     <img id="zoom" src="/heart.869a033f.png">
     <video id="local-video" style="-webkit-transform: scaleX(-1)" muted="" playsinline=""></video>
@@ -23,10 +27,12 @@
     <div id="zoomback">
       <canvas id="correlationChart"></canvas>
     </div>
+  
     <script src="/index.9733ea94.js"></script>
     <script src="/index.7a386bb5.js" async="" defer=""></script>
-    <script src="/index.a62527fa.js" async="" defer=""></script>
+    <script src="/index.5d5183e6.js" async="" defer=""></script>
     <script src="/index.a6cc33ce.js" defer=""></script>
+    <script src="/index.71084386.js" defer=""></script>
     <script>$(function() {
     $('heart').on('inview', function(event, isInView) {
         if (isInView) $(this).addClass('img-blur');

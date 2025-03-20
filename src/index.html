@@ -16,6 +16,10 @@
         <button id="join">join</button>
         <button id="leave">leave</button>
       </div>
+      <div id="heart-container">
+        <h2>現在の心拍数</h2>
+        <div id="heart-rate">取得中...</div>
+      </div>
     </div>
     <img id="zoom" src="./img/heart.png">
     <video id="local-video" style="-webkit-transform: scaleX(-1);" muted playsinline></video>
@@ -23,10 +27,12 @@
     <div id = "zoomback">
       <canvas id="correlationChart"></canvas>
     </div>
+  
     <script src="js/jquery-3.7.1.min.js"></script>
     <script type="module" src="main.js" async></script>
-    <script type="module" src="heart.js" async></script>
+    <script type="module" src="heart2.js" async></script>
     <script type="module" src="zoom.js"></script>
+    <script type="module" src="real-time-heartrate.js"></script>
     <script>
       $(function() {
         $('heart').on('inview', function(event, isInView) {
