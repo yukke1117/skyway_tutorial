@@ -78,7 +78,7 @@ setInterval(() => {
         timeLabels.push(currentTime);
 
         // データ数が多くなりすぎたら古いデータを削除
-        if (timeLabels.length > 50) {
+        if (timeLabels.length > 10) {
             heartRateData.shift();
             heartRate2Data.shift();
             timeLabels.shift();
@@ -86,7 +86,7 @@ setInterval(() => {
         }
 
         // 相関を計算（十分なデータが溜まったら）
-        if (heartRateData.length > 10) {
+        if (heartRateData.length > 5) {
             let correlationValue = calculateCorrelation(heartRateData, heartRate2Data);
             let correlationValue_new = (correlationValue + 1) / 2;
             console.log(`Heart Rate 1 & 2 Correlation: ${correlationValue_new}`);
