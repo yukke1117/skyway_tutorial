@@ -94,7 +94,7 @@ setInterval(() => {
             correlationChart.data.labels = timeLabels; // ラベル更新
             correlationChart.data.datasets[0].data = maxCorrelationData; // データセット更新
             correlationChart.update();
-            if (correlationValue_new >= 0.5) {
+            if (correlationValue_new >= 0.4) {
                 createHeartEffect();
             }
 
